@@ -1,3 +1,4 @@
+
 import java.security.Key;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -76,7 +77,7 @@ public class Password implements Printable {
     }
 
     @Override
-    public void listData() {
-        System.out.println("Password: " + getOriginalPassword());
+    public String listData() {
+        return "Password: " + getEncryptedPassword();
     }
 }

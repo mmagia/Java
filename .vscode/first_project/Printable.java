@@ -1,3 +1,4 @@
+
 public interface Printable {
-    void listData();
+    String listData();
 }

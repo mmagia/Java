@@ -1,3 +1,4 @@
+
 public class Login implements Printable {
     private String login;
     public Login(String login) {
@@ -17,7 +18,7 @@ public class Login implements Printable {
     }
 
     @Override
-    public void listData() {
-        System.out.println("Login: " + getLogin());
+    public String listData() {
+        return "Login: " + getLogin();
     }
 }

@@ -1,3 +1,6 @@
+
+
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -10,10 +13,16 @@ public class AppManager {
     private FileWriter bugWriter, userDataWriter;
 
     public void runSimulation() throws IOException{
-        String enteredLine = "";
+        System.out.println("Do you want to delete all existing passwords y/n?");
+        String wiper = scanner.nextLine();
         try {
-            userDataWriter = new FileWriter("loginPasswords.txt");
+            if(wiper.equals("n")) {
+                userDataWriter = new FileWriter("loginPasswords.txt",true);
+            } else {
+                userDataWriter = new FileWriter("loginPasswords.txt");
+            }
             bugWriter = new FileWriter("bugLogger.txt");
+            String enteredLine = "";
             while (true) {
                 enteredLine = scanner.nextLine();
                 if (enteredLine.equals("end")) {
@@ -25,11 +34,13 @@ public class AppManager {
                     if (data.length != 2) {
                         throw new InvalidAmoutOfInputsException();
                     }
+                    Password enteredPass = new Password(data[1]);
+                    Login enteredLogin = new Login(data[0]);
+                    userData.put(enteredLogin, enteredPass);
+                    userDataWriter.write(enteredLogin.listData() + " " + enteredPass.listData() + "\n");
                 } catch (InvalidAmoutOfInputsException e) {
                     bugWriter.write(e.getMessage());
                 }
-
-    
             }
         } catch (IOException e) {
             bugWriter.write("File is not found!");
@@ -39,4 +50,5 @@ public class AppManager {
             userDataWriter.close();
         }
     }
+
 }

@@ -1,2 +1,1 @@
 Invalid amount of inputs
-Invalid amount of inputs
